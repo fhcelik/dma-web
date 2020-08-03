@@ -1,22 +1,26 @@
 import { connect } from 'react-redux';
 import { branch, compose, renderComponent, withHandlers, withState } from 'recompose';
-import { saveQueryEmail } from '../../redux/actions/auth';
+import { sendQueryEmail } from '../../redux/actions/auth';
+import { getAccounts } from '../../redux/actions/accounts';
 import { checkUserSelector } from '../../redux/selectors/auth';
-import ListItems from '../ListItems';
+import Account from '../overview';
 import Login from './Login.view';
 
 export default compose(
   connect(state => ({ isUser: checkUserSelector(state)}), {
-    saveQueryEmail,
+    sendQueryEmail,
+    getAccounts,
   }),
-  branch(({isUser}) => isUser, renderComponent(ListItems)),
+  branch(({isUser}) => isUser, renderComponent(Account)),
   withState('search','setSearch',null),
   withHandlers({
       handleChange: ({setSearch}) => ({ target: { value } }) => {
         setSearch(value);
       },
-      handleSubmit: ({saveQueryEmail, search})=>(e)=> {
+      handleSubmit: ({getAccounts, sendQueryEmail, search})=>(e)=> {
         e.preventDefault(); 
-        saveQueryEmail(search)},
+        sendQueryEmail(search);
+        getAccounts(search);
+      },
   })
 )(Login);

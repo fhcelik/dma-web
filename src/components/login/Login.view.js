@@ -19,7 +19,7 @@ export default ({handleChange, handleSubmit, query }) => {
                 <AccountCircle />
             </Grid>
             <Grid item >
-                <TextField id="input-with-icon-grid" label="Enter e-mail" value={query} onChange={handleChange}/>
+                <TextField id="input-with-icon-grid" label="Enter Customer ID" value={query} onChange={handleChange}/>
             
         
             <button style={{ 

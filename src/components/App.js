@@ -1,18 +1,29 @@
 import { Grid } from '@material-ui/core';
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import ListItems from './ListItems/index';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useRouteMatch,
+  useParams
+} from "react-router-dom";
+import Deposit from './deposit';
 import Login from './login';
 
 const App = () => (
-    <Grid>
-      <BrowserRouter>
+    
+      <Router>
         <Switch>
-          <Route path='/list' component={ListItems} />
-          <Route exact path='/' component={Login} />
+          <Route path='/deposit'>
+            <Deposit/>
+          </Route>
+          <Route exact path='/'>
+            <Login/>
+          </Route>
         </Switch>
-      </BrowserRouter>
-    </Grid>
+      </Router>
+    
 )
 
 export default App;
