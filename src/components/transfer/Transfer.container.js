@@ -1,10 +1,12 @@
 import { connect } from 'react-redux';
 import { compose, withHandlers, withState } from 'recompose';
 import { transferMoney } from '../../redux/actions/accounts';
+import { accountsSelector } from '../../redux/selectors/accounts';
+import { warningSelector } from '../../redux/selectors/auth';
 import Transfer from './Transfer.view';
 
 export default compose(
-  connect(null, {
+  connect(state => ({ ...accountsSelector(state),  warning:warningSelector(state)}), {
     transferMoney,
   }),
   withState('account','setAccount',null),
@@ -20,9 +22,9 @@ export default compose(
       targetChange: ({setTargetAccount}) => ({ target: { value } }) => {
         setTargetAccount(value);
       },
-      handleSubmit: ({account, amount, targetAccount, transferMoney})=>(e)=> {
-        e.preventDefault(); 
-        transferMoney({account, targetAccount, amount});
+      handleSubmit: ({account, accounts, amount, targetAccount, transferMoney})=>(e)=> {
+        e.preventDefault();
+        transferMoney({account, targetAccount, amount, custId:accounts[0].custId});
       }
   })
 )(Transfer);

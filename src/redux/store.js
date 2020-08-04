@@ -12,7 +12,7 @@ import persistReducer from 'redux-persist/lib/persistReducer';
 import thunk from 'redux-thunk';
 import fsaThunk from './fsa-thunk';
 import reducer from './reducers';
-import { logout } from '../redux/actions/auth';
+import { logout, warning } from '../redux/actions/auth';
 
 export const history = createBrowserHistory();
 
@@ -62,8 +62,8 @@ export default function configureStore(initialState = {}, persist = true) {
     error => {
       const status = R.pathOr(null, ['response', 'status'], error);
       console.log(error)
-      if(status === 401){
-      store.dispatch(logout(false));
+      if(status === 404){
+        store.dispatch(warning('Something went wrong'));
       }
 
       return Promise.reject(error);

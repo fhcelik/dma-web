@@ -1,4 +1,4 @@
-import { Grid } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default ({ account, accountChange,amount, handleChange, handleSubmit, targetAccount, targetChange }) => {
+export default ({ account, accountChange,amount, handleChange, handleSubmit, targetAccount, targetChange, warning }) => {
     const classes = useStyles();
   
     return (
@@ -41,7 +41,7 @@ export default ({ account, accountChange,amount, handleChange, handleSubmit, tar
        
       
                    
-                
+        <Typography>{warning}</Typography>         
       </form>
     );
   }

@@ -1,4 +1,4 @@
-import { Grid } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default ({ account, accountChange, amount, currency, handleChange, handleSubmit, selectChange }) => {
+export default ({ account, accountChange, amount, currency, handleChange, handleSubmit, selectChange, warning }) => {
     const classes = useStyles();
   
     return (
@@ -47,7 +47,7 @@ export default ({ account, accountChange, amount, currency, handleChange, handle
                           marginTop: '12px'}}>Withdraw</button>
         </Grid>
        
-      
+        <Typography>{warning}</Typography> 
                    
                 
       </form>

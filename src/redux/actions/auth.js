@@ -12,3 +12,10 @@ export const logout = createAction(
   '@@dma/auth/logout',
 );
 
+export const warning = createAction(
+  '@@dma/auth/warning',
+);
+
+export const resetAuth = createAction(
+  '@@dma/auth/resetAuth',
+);
